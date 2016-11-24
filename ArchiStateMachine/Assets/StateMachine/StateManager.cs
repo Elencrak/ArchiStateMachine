@@ -24,5 +24,5 @@ public class StateManager : MonoBehaviour {
 	}
 
 	public State initialState;
-	private State currentState;
+	public State currentState;
 }
