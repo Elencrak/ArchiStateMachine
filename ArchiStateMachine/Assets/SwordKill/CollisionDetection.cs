@@ -16,7 +16,16 @@ public class CollisionDetection : MonoBehaviour {
 
     void OnTriggerEnter(Collider trigger)
     {
-        if(trigger.tag == "sword" || trigger.tag == ("sphere"))
+        if(trigger.tag == "sword" )
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.tag == "sword")
         {
             SceneManager.LoadScene(0);
         }

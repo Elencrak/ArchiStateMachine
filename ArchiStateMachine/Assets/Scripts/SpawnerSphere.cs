@@ -3,20 +3,19 @@ using System.Collections;
 
 public class SpawnerSphere : MonoBehaviour {
     public GameObject sphere;
+    public PropertyHolder pillar;
 
 	// Use this for initialization
 	void Start () {
 	
 	}
-	
-
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (pillar.GetProperty("activated") == "true")
         {
-            Debug.Log("lol");
             Spawn();
+            Destroy(this);
         }
 	}
 
@@ -24,7 +23,7 @@ public class SpawnerSphere : MonoBehaviour {
     {
         GameObject tempSphere = Instantiate(sphere, transform) as GameObject;
         tempSphere.transform.position = transform.position;
-        tempSphere.GetComponent<Rigidbody>().AddForce(-Vector3.down * 200);
+        tempSphere.GetComponent<Rigidbody>().AddForce(-Vector3.down * 100);
        
     }
 }

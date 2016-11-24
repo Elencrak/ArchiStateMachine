@@ -12,10 +12,10 @@ public class RotateAxe : MonoBehaviour {
 
     void Update()
     {
-
         float angle = angleMax * Mathf.Cos(2 * Mathf.PI / period * Time.time) + rotationOffset;
 
-        transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.localRotation = Quaternion.AngleAxis(angle, Vector3.left);
+
     }
 
 }
