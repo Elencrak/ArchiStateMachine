@@ -7,6 +7,7 @@ public class RotatePillar : MonoBehaviour {
     {
         propertyHolderPillar = GetComponent<PropertyHolderPillar>();
         propertyHolder = GetComponent<PropertyHolder>();
+        PillarManager.instance.Add(GetComponent<RotatePillar>().index, GetComponent<PropertyHolder>());
     }
 
     // Update is called once per frame

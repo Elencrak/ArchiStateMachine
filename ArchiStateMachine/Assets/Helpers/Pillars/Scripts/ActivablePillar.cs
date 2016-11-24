@@ -15,7 +15,11 @@ public class ActivablePillar : MonoBehaviour {
 
         if (propertyHolder.GetProperty("activated") == "true")
         {
-            GetComponent<LineRenderer>().enabled = true;
+            if(GetComponent<RotatePillar>().index < PillarManager.instance.nbOfPillars-1)
+            {
+                GetComponent<LineRenderer>().enabled = true;
+            }
+            
             if (Vector3.Distance(transform.position, player.transform.position) < threshold)
             {
 
