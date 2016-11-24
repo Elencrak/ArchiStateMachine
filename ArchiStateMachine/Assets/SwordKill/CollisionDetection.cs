@@ -16,7 +16,7 @@ public class CollisionDetection : MonoBehaviour {
 
     void OnTriggerEnter(Collider trigger)
     {
-        if(trigger.tag == "sword")
+        if(trigger.tag == "sword" || trigger.tag == ("sphere"))
         {
             SceneManager.LoadScene(0);
         }

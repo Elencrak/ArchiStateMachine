@@ -13,8 +13,9 @@ public class SpawnerSphere : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.B))
         {
+            Debug.Log("lol");
             Spawn();
         }
 	}
@@ -22,7 +23,8 @@ public class SpawnerSphere : MonoBehaviour {
     void Spawn()
     {
         GameObject tempSphere = Instantiate(sphere, transform) as GameObject;
-        tempSphere.GetComponent<Rigidbody>().AddForce(Vector3.forward * 200);
+        tempSphere.transform.position = transform.position;
+        tempSphere.GetComponent<Rigidbody>().AddForce(-Vector3.down * 200);
        
     }
 }
