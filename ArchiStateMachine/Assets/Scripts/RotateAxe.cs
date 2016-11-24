@@ -5,53 +5,17 @@ public class RotateAxe : MonoBehaviour {
 
     public float speed;
     Quaternion initialRotation;
-    public GameObject objectToLookAt;
-    public float angleMin;
+    public GameObject objectToRotateAround;
     public float angleMax;
-
-    public bool isMoving;
-    float offset = 5;
-	// Use this for initialization
-	void Start () {
-        initialRotation = this.transform.rotation;
-        transform.eulerAngles= new Vector3(0, 0, angleMin);
-	}
+    public float period;
+    public float rotationOffset;
 
     void Update()
     {
-            if(transform.eulerAngles.z >= angleMax && transform.eulerAngles.z >= angleMin)
-            {
-                transform.RotateAround(objectToLookAt.transform.position, -Vector3.forward, speed * Time.deltaTime);
-            }
 
-            if(transform.eulerAngles.z <= angleMax)
-            {
-                transform.RotateAround(objectToLookAt.transform.position, Vector3.forward, speed * Time.deltaTime);
-            }
-        
+        float angle = angleMax * Mathf.Cos(2 * Mathf.PI / period * Time.time) + rotationOffset;
+
+        transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-
-    IEnumerator Move(bool invert)
-    {
-        isMoving = true;
-        if (invert)
-        {
-            Debug.Log(transform.eulerAngles.z);
-            while (transform.eulerAngles.z <= angleMax + offset && transform.eulerAngles.z >= angleMin - 1)
-            {
-                transform.RotateAround(objectToLookAt.transform.position, -Vector3.forward, speed * Time.deltaTime);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-        else
-        {
-            while (transform.eulerAngles.z >= angleMin - offset && transform.eulerAngles.z <= angleMax + 1)
-            {
-                transform.RotateAround(objectToLookAt.transform.position, Vector3.forward, speed * Time.deltaTime);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-        isMoving = false;
-    }
 }
